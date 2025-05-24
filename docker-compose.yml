@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  carely-chatbot:
+    build: .
+    container_name: carely-companion-chatbot
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

@@ -1,0 +1,11 @@
+sentence-transformers==2.2.2
+langchain==0.1.14
+flask==3.0.3
+pypdf==4.2.0
+python-dotenv==1.0.1
+pinecone-client[grpc]==3.2.2
+langchain-pinecone==0.0.3
+langchain_community==0.0.34
+langchain_openai==0.1.7
+langchain_experimental==0.0.52
+setuptools>=68.0.0
