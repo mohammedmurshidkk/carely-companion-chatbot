@@ -4,7 +4,7 @@ services:
     env: docker
     plan: free
     buildCommand: docker build -t carely-companion-chatbot .
-    startCommand: docker run -p $PORT:8080 -e PORT=$PORT -e PINECONE_API_KEY=$PINECONE_API_KEY -e GEN_AI_API_KEY=$GEN_AI_API_KEY -e INDEX_NAME=$INDEX_NAME carely-companion-chatbot
+    startCommand: docker run -p $PORT:8080 -e PORT=$PORT -e PINECONE_API_KEY=$PINECONE_API_KEY -e GEN_AI_API_KEY=$GEN_AI_API_KEY -e INDEX_NAME=$INDEX_NAME -e CORS_ALLOWED_ORIGINS=$CORS_ALLOWED_ORIGINS carely-companion-chatbot
     envVars:
       - key: PORT
         value: 8080
@@ -14,3 +14,7 @@ services:
         sync: false
       - key: INDEX_NAME
         sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+        # Add your allowed domains here, comma-separated
+        # Example: https://example.com,https://app.example.com

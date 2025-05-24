@@ -5,11 +5,18 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 from  src.prompt import *
 
 app = Flask(__name__)
+
+# Setup CORS - Use comma-separated list of allowed domains from environment variable
+# Example: export CORS_ALLOWED_ORIGINS=https://example.com,https://app.example.com
+cors_allowed_origins_str = os.environ.get('CORS_ALLOWED_ORIGINS', '')
+cors_allowed_origins = [origin.strip() for origin in cors_allowed_origins_str.split(',')] if cors_allowed_origins_str else []
+CORS(app, resources={r"/chat": {"origins": cors_allowed_origins}})
 
 load_dotenv()
 
