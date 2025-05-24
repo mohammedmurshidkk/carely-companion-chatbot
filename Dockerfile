@@ -11,7 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Copy requirements and install
 COPY requirements.txt ./
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Fix dependency issues and install packages
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir huggingface_hub==0.20.3 && \
+    pip install --no-cache-dir sentence-transformers==2.2.2 && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
 COPY . .

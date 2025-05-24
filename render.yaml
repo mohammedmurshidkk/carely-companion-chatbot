@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: carely-companion-chatbot
+    env: docker
+    plan: free
+    buildCommand: docker build -t carely-companion-chatbot .
+    startCommand: docker run -p $PORT:8080 -e PORT=$PORT -e PINECONE_API_KEY=$PINECONE_API_KEY -e GEN_AI_API_KEY=$GEN_AI_API_KEY -e INDEX_NAME=$INDEX_NAME carely-companion-chatbot
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: GEN_AI_API_KEY
+        sync: false
+      - key: INDEX_NAME
+        sync: false

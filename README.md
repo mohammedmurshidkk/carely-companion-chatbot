@@ -38,7 +38,33 @@ A backend AI-powered medical assistant chatbot built with Flask, LangChain, Pine
 - Returns `{ "answer": "response" }`
 
 ## Deployment
-See `Dockerfile` for containerization instructions.
+
+### Local Deployment with Docker
+See `Dockerfile` for containerization instructions:
+```bash
+docker build -t carely-companion-chatbot .
+docker run -p 8080:8080 -e PINECONE_API_KEY=your-key -e GEN_AI_API_KEY=your-key -e INDEX_NAME=your-index carely-companion-chatbot
+```
+
+### Deploying on Render
+1. Sign up/Login to [Render](https://render.com)
+2. Create a new Web Service
+3. Connect your repository
+4. Configure as follows:
+   - **Name**: `carely-companion-chatbot` (or your preferred name)
+   - **Environment**: Docker
+   - **Branch**: main (or your default branch)
+   - **Root Directory**: Leave blank
+   - **Region**: Choose closest to your users
+   - **Instance Type**: Start with Free tier
+   - **Health Check Path**: `/`
+5. Add Environment Variables:
+   - `PINECONE_API_KEY`: Your Pinecone API key
+   - `GEN_AI_API_KEY`: Your Google Generative AI API key
+   - `INDEX_NAME`: Your Pinecone index name
+6. Click "Create Web Service"
+
+You can also use the included `render.yaml` file for easier deployment through Render's Blueprint feature.
 
 ## License
 MIT
